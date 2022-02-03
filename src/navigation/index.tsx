@@ -4,12 +4,15 @@
  *
  */
 
-import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
-
-import { HomeScreen } from "../screens";
+import { HomeScreen, AboutModalScreen } from "../screens";
 import { RootStackParamList } from "../types";
+import {
+  NavigationContainer,
+  DefaultTheme,
+  DarkTheme,
+} from "@react-navigation/native";
 
 export default function Navigation() {
   return (
@@ -28,7 +31,22 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator initialRouteName="Home">
-      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Group>
+        <Stack.Screen
+          options={{
+            headerShown: false,
+          }}
+          name="Home"
+          component={HomeScreen}
+        />
+      </Stack.Group>
+      <Stack.Group screenOptions={{ presentation: "fullScreenModal" }}>
+        <Stack.Screen
+          options={{ title: "About" }}
+          name="aboutModal"
+          component={AboutModalScreen}
+        />
+      </Stack.Group>
     </Stack.Navigator>
   );
 }
