@@ -32,6 +32,25 @@ export const useStore = create<EinsenMatrixState>(
 
         return set({ data: entries });
       },
+      addTask: ({ projectKey, priorityKey, taskKey, ...rest }) => {
+        const data = get().data;
+        const entries = {
+          ...data,
+          [projectKey]: {
+            ...data[projectKey],
+            tasks: {
+              ...data[projectKey].tasks,
+              [priorityKey]: {
+                ...data[projectKey].tasks[priorityKey],
+                [taskKey]: { ...rest },
+              },
+            },
+          },
+        };
+        return set({
+          data: entries,
+        });
+      },
     }),
     {
       name: "einsen-state",
