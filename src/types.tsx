@@ -19,3 +19,42 @@ export type RootStackParamList = {
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
   NativeStackScreenProps<RootStackParamList, Screen>;
+
+export interface TaskItem {
+  title: string;
+  description: string;
+  category: string;
+  urgency: number;
+  importance: number;
+  dueDate: Date;
+  isCompleted: boolean;
+  createdAt: Date;
+  updatedAt?: Date;
+}
+
+export interface Project {
+  title: string;
+  description: string;
+  isCompleted: boolean;
+  dueDate: Date;
+  createdAt: Date;
+  updatedAt?: Date;
+  tasks: {
+    //   * task priority Table
+    //   * Urgent -> 4
+    //   * Important -> 3
+    //   * Delegate -> 2
+    //   * Dump -> 1
+    1: TaskItem[] | [];
+    2: TaskItem[] | [];
+    3: TaskItem[] | [];
+    4: TaskItem[] | [];
+  };
+}
+
+export interface EinsenMatrixState {
+  data: {
+    [key: string]: Project;
+  };
+  createProject: (data: Project & { key: string }) => void;
+}
