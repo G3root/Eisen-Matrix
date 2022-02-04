@@ -2,6 +2,7 @@ import * as React from "react";
 import { format } from "date-fns";
 import styled from "@emotion/native";
 import { HelperText, Paragraph, useTheme } from "react-native-paper";
+import { TouchableOpacity } from "react-native";
 
 export interface IDatePlaceHolderProps {
   label: string;
@@ -21,7 +22,11 @@ const Text = styled(Paragraph)((props: { bg: string }) => ({
   marginLeft: 10,
 }));
 
-export function DatePlaceHolder({ label, value }: IDatePlaceHolderProps) {
+export function DatePlaceHolder({
+  label,
+  value,
+  ...rest
+}: IDatePlaceHolderProps & React.ComponentProps<typeof TouchableOpacity>) {
   const { colors } = useTheme();
   const formatted = format(value, "MM/dd/yyyy");
   return (
@@ -31,7 +36,7 @@ export function DatePlaceHolder({ label, value }: IDatePlaceHolderProps) {
       <HelperText type="info" visible>
         {label}
       </HelperText>
-      <Container bg={colors.placeholder}>
+      <Container {...rest} bg={colors.placeholder}>
         <Text bg={colors.placeholder}>{formatted}</Text>
       </Container>
     </>
