@@ -16,7 +16,7 @@ export function HomeScreen({
     <>
       <Container>
         <Header navigation={navigation} />
-        <ProjectList />
+        <ProjectList navigation={navigation} />
       </Container>
       <FabButton
         icon="plus-square"

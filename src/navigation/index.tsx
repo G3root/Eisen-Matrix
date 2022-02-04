@@ -6,7 +6,12 @@
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
-import { HomeScreen, AboutModalScreen, ProjectCreateModal } from "../screens";
+import {
+  HomeScreen,
+  AboutModalScreen,
+  ProjectCreateModal,
+  ProjectDetailScreen,
+} from "../screens";
 import { RootStackParamList } from "../types";
 import {
   NavigationContainer,
@@ -38,6 +43,11 @@ function RootNavigator() {
           }}
           name="Home"
           component={HomeScreen}
+        />
+        <Stack.Screen
+          name="projectDetail"
+          component={ProjectDetailScreen}
+          options={({ route }) => ({ title: `${route.params.title} tasks` })}
         />
       </Stack.Group>
       <Stack.Group screenOptions={{ presentation: "fullScreenModal" }}>

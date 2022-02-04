@@ -14,6 +14,7 @@ export type RootStackParamList = {
   Home: undefined;
   aboutModal: undefined;
   projectModal: undefined;
+  projectDetail: { key: string; title: string };
   NotFound: undefined;
 };
 

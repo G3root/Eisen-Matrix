@@ -3,7 +3,7 @@ import { useStore } from "../../../store";
 import { Store } from "../../../selectors";
 import { ProjectCard } from "../ProjectCard/ProjectCard";
 import { FlatList, ListRenderItem } from "react-native";
-import { Project } from "../../../types";
+import { Project, RootStackScreenProps } from "../../../types";
 import shallow from "zustand/shallow";
 
 import styled from "@emotion/native";
@@ -13,9 +13,11 @@ const Spacer = styled.View({
   marginBottom: 10,
 });
 
-export interface IProjectListProps {}
+export interface IProjectListProps {
+  navigation: RootStackScreenProps<"Home">["navigation"];
+}
 
-export function ProjectList(props: IProjectListProps) {
+export function ProjectList({ navigation }: IProjectListProps) {
   const store = useStore(Store);
   const keys = useStore((state) => Object.keys(state.data), shallow);
   const refinedData = keys.map((key) => ({
@@ -24,7 +26,7 @@ export function ProjectList(props: IProjectListProps) {
   }));
 
   const renderItem: ListRenderItem<Project & { id: string }> = ({ item }) => (
-    <ProjectCard title={item.title} objKey={item.id} />
+    <ProjectCard navigation={navigation} title={item.title} objKey={item.id} />
   );
 
   return (
