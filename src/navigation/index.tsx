@@ -6,7 +6,7 @@
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
-import { HomeScreen, AboutModalScreen } from "../screens";
+import { HomeScreen, AboutModalScreen, ProjectCreateModal } from "../screens";
 import { RootStackParamList } from "../types";
 import {
   NavigationContainer,
@@ -45,6 +45,11 @@ function RootNavigator() {
           options={{ title: "About" }}
           name="aboutModal"
           component={AboutModalScreen}
+        />
+        <Stack.Screen
+          options={{ title: "New Project" }}
+          name="projectModal"
+          component={ProjectCreateModal}
         />
       </Stack.Group>
     </Stack.Navigator>
