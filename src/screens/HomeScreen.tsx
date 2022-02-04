@@ -1,6 +1,6 @@
 import styled from "@emotion/native";
 import { Header, ProjectList } from "../components/home";
-import { ProjectFabButton } from "../components/home";
+import { FabButton } from "../components/home";
 
 import { RootStackScreenProps } from "../types";
 const Container = styled.View({
@@ -18,7 +18,12 @@ export function HomeScreen({
         <Header navigation={navigation} />
         <ProjectList />
       </Container>
-      <ProjectFabButton navigation={navigation} />
+      <FabButton
+        icon="plus-square"
+        label="add project"
+        color="white"
+        onPress={() => navigation.navigate("projectModal")}
+      />
     </>
   );
 }
