@@ -5,7 +5,7 @@ import { RootStackScreenProps } from "../types";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import styled from "@emotion/native";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Input } from "../components/InputPrimitives";
+import { DatePlaceHolder, Input } from "../components/InputPrimitives";
 import { useStore } from "../store";
 
 import { CreateProject } from "../selectors";
@@ -17,9 +17,9 @@ const Container = styled.View({
   marginTop: 60,
 });
 
-const Spacer = styled.View({
-  marginBottom: 10,
-});
+const Spacer = styled.View((props: { mb?: number }) => ({
+  marginBottom: props.mb ? props.mb : 10,
+}));
 
 type Inputs = {
   title: string;
@@ -56,7 +56,7 @@ export function ProjectCreateModal({
     const key = nanoid();
     const values = {
       key,
-      tasks: { 1: [], 2: [], 3: [], 4: [] },
+      tasks: { 1: {}, 2: {}, 3: {}, 4: {} },
       createdAt: new Date(),
       ...data,
     };
@@ -105,16 +105,11 @@ export function ProjectCreateModal({
       />
 
       <Spacer />
-      <Checkbox.Item
-        status={isCompleted ? "checked" : "unchecked"}
-        label="Completed"
-        onPress={() => {
-          setValue("isCompleted", !isCompleted);
-        }}
+      <DatePlaceHolder
+        label="Due Date"
+        value={dueDate}
+        onPress={() => setOpen(true)}
       />
-      <Spacer />
-
-      <Button title="Open" onPress={() => setOpen(true)} />
       {open && (
         <DateTimePicker
           testID="dateTimePicker"
@@ -128,7 +123,16 @@ export function ProjectCreateModal({
           }}
         />
       )}
-      <Spacer />
+      <Spacer mb={30} />
+      <Checkbox.Item
+        status={isCompleted ? "checked" : "unchecked"}
+        label="Completed"
+        onPress={() => {
+          setValue("isCompleted", !isCompleted);
+        }}
+      />
+      <Spacer mb={30} />
+
       <Button title="Submit" onPress={handleSubmit(onSubmit)} />
     </Container>
   );
