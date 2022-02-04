@@ -4,9 +4,10 @@ import { TouchableOpacity, Text } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { FAB } from "react-native-paper";
 type feather = React.ComponentProps<typeof Feather.Button>;
+import { RootStackScreenProps } from "../../../types";
 
 export interface IProjectFabButtonProps {
-  children?: React.ReactNode;
+  navigation: RootStackScreenProps<"Home">["navigation"];
 }
 
 const FabButton = styled(FAB)({
@@ -15,16 +16,13 @@ const FabButton = styled(FAB)({
   left: "30%",
 });
 
-export function ProjectFabButton({
-  children,
-  ...rest
-}: IProjectFabButtonProps) {
+export function ProjectFabButton({ navigation }: IProjectFabButtonProps) {
   return (
     <FabButton
       icon="plus-square"
       label="add project"
       color="white"
-      onPress={() => console.log("Pressed")}
+      onPress={() => navigation.navigate("projectModal")}
     />
   );
 }
