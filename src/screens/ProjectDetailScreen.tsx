@@ -1,10 +1,11 @@
 import styled from "@emotion/native";
 import { FabButton } from "../components/home";
+import { MatrixList } from "../components/projectDetail";
 
 import { RootStackScreenProps } from "../types";
 const Container = styled.View({
   marginHorizontal: 20,
-  marginTop: 60,
+  marginTop: 40,
 });
 
 export function ProjectDetailScreen({
@@ -13,8 +14,17 @@ export function ProjectDetailScreen({
 }: RootStackScreenProps<"projectDetail">) {
   return (
     <>
-      <Container></Container>
-      <FabButton icon="plus-square" label="add Task" color="white" />
+      <Container>
+        <MatrixList projectKey={route.params.key} />
+      </Container>
+      <FabButton
+        icon="plus-square"
+        label="add Task"
+        color="white"
+        onPress={() =>
+          navigation.navigate("taskModal", { key: route.params.key })
+        }
+      />
     </>
   );
 }
