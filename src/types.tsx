@@ -16,6 +16,7 @@ export type RootStackParamList = {
   projectModal: undefined;
   taskModal: { key: string };
   projectDetail: { key: string; title: string };
+  taskList: { projectKey: string; matrixKey: 1 | 2 | 3 | 4 };
   NotFound: undefined;
 };
 

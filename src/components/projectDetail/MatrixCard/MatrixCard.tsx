@@ -33,6 +33,7 @@ const ParagraphText = styled(Paragraph)((props: { bg: string }) => ({
 export interface IMatrixCardProps {
   id: 1 | 2 | 3 | 4;
   count: number;
+  onPress: () => void;
 }
 
 const data = {
@@ -55,11 +56,11 @@ const data = {
 };
 
 export function MatrixCard(props: IMatrixCardProps) {
-  const { id, count } = props;
+  const { id, count, onPress } = props;
   const { colors } = useTheme();
 
   return (
-    <CardWrapper elevation={4} bg={data[id].bg}>
+    <CardWrapper elevation={4} bg={data[id].bg} onPress={onPress}>
       <Card.Content>
         <Wrapper>
           <View>
