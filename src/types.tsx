@@ -57,4 +57,5 @@ export interface EinsenMatrixState {
     [key: string]: Project;
   };
   createProject: (data: Project & { key: string }) => void;
+  deleteProject: (data: { key: string }) => void;
 }

@@ -1,4 +1,5 @@
 import { EinsenMatrixState } from "./types";
 
-export const createProject = (state: EinsenMatrixState) => state.createProject;
-export const store = (state: EinsenMatrixState) => state.data;
+export const CreateProject = (state: EinsenMatrixState) => state.createProject;
+export const Store = (state: EinsenMatrixState) => state.data;
+export const DeleteProject = (state: EinsenMatrixState) => state.deleteProject;

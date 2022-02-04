@@ -26,6 +26,12 @@ export const useStore = create<EinsenMatrixState>(
             [key]: { ...rest },
           },
         }),
+      deleteProject: ({ key }) => {
+        const entries = get().data;
+        delete entries[key];
+
+        return set({ data: entries });
+      },
     }),
     {
       name: "einsen-state",
