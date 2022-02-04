@@ -14,6 +14,7 @@ export type RootStackParamList = {
   Home: undefined;
   aboutModal: undefined;
   projectModal: undefined;
+  taskModal: { key: string };
   projectDetail: { key: string; title: string };
   NotFound: undefined;
 };
@@ -46,12 +47,14 @@ export interface Project {
     //   * Important -> 3
     //   * Delegate -> 2
     //   * Dump -> 1
-    1: TaskItem[] | [];
-    2: TaskItem[] | [];
-    3: TaskItem[] | [];
-    4: TaskItem[] | [];
+    1: { [key: string]: TaskItem };
+    2: { [key: string]: TaskItem };
+    3: { [key: string]: TaskItem };
+    4: { [key: string]: TaskItem };
   };
 }
+
+type PriorityTable = 1 | 2 | 3 | 4;
 
 export interface EinsenMatrixState {
   data: {
@@ -59,4 +62,11 @@ export interface EinsenMatrixState {
   };
   createProject: (data: Project & { key: string }) => void;
   deleteProject: (data: { key: string }) => void;
+  addTask: (
+    data: {
+      projectKey: string;
+      priorityKey: PriorityTable;
+      taskKey: string;
+    } & TaskItem
+  ) => void;
 }
