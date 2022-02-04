@@ -11,6 +11,7 @@ import {
   AboutModalScreen,
   ProjectCreateModal,
   ProjectDetailScreen,
+  TaskCreateModal,
 } from "../screens";
 import { RootStackParamList } from "../types";
 import {
@@ -60,6 +61,11 @@ function RootNavigator() {
           options={{ title: "New Project" }}
           name="projectModal"
           component={ProjectCreateModal}
+        />
+        <Stack.Screen
+          options={{ title: "New Task" }}
+          name="taskModal"
+          component={TaskCreateModal}
         />
       </Stack.Group>
     </Stack.Navigator>
