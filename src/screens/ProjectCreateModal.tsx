@@ -8,7 +8,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Input } from "../components/InputPrimitives";
 import { useStore } from "../store";
 
-import { createProject as createProjectSelector } from "../selectors";
+import { CreateProject } from "../selectors";
 import { nanoid } from "../utils";
 
 const Container = styled.View({
@@ -48,7 +48,7 @@ export function ProjectCreateModal({
     },
   });
 
-  const createProject = useStore(createProjectSelector);
+  const createProject = useStore(CreateProject);
 
   const [open, setOpen] = React.useState(false);
 
