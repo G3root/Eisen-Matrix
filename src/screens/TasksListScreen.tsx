@@ -25,7 +25,9 @@ export function TaskListScreen({
         icon="plus-square"
         label="add Task"
         color="white"
-        onPress={() => navigation.navigate("taskModal", { key: projectKey })}
+        onPress={() =>
+          navigation.navigate("taskCreateModal", { key: projectKey })
+        }
       />
     </>
   );
