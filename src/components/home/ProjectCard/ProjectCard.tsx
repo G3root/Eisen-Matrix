@@ -22,7 +22,13 @@ export function ProjectCard(props: IProjectCardProps) {
     >
       <Card.Title title={title} subtitle="Card Subtitle" left={LeftContent} />
       <Card.Actions>
-        <Button>Edit</Button>
+        <Button
+          onPress={() =>
+            navigation.push("projectEditModal", { projectKey: objKey, title })
+          }
+        >
+          Edit
+        </Button>
         <Button onPress={() => deleteHandler(objKey)}>Delete</Button>
       </Card.Actions>
     </Card>

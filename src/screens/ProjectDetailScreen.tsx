@@ -22,7 +22,7 @@ export function ProjectDetailScreen({
         label="add Task"
         color="white"
         onPress={() =>
-          navigation.navigate("taskModal", { key: route.params.key })
+          navigation.navigate("taskCreateModal", { key: route.params.key })
         }
       />
     </>

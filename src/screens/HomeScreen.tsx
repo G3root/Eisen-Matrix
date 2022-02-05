@@ -22,7 +22,7 @@ export function HomeScreen({
         icon="plus-square"
         label="add project"
         color="white"
-        onPress={() => navigation.navigate("projectModal")}
+        onPress={() => navigation.navigate("projectCreateModal")}
       />
     </>
   );

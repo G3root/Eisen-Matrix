@@ -13,8 +13,15 @@ declare global {
 export type RootStackParamList = {
   Home: undefined;
   aboutModal: undefined;
-  projectModal: undefined;
-  taskModal: { key: string };
+  projectEditModal: { projectKey: string; title: string };
+  projectCreateModal: undefined;
+  taskCreateModal: { key: string };
+  taskEditModal: {
+    projectKey: string;
+    matrixKey: 1 | 2 | 3 | 4;
+    taskKey: string;
+    title: string;
+  };
   projectDetail: { key: string; title: string };
   taskList: { projectKey: string; matrixKey: 1 | 2 | 3 | 4 };
   taskDetail: {
@@ -69,7 +76,15 @@ export interface EinsenMatrixState {
   };
   createProject: (data: Project & { key: string }) => void;
   deleteProject: (data: { key: string }) => void;
+  updateProject: (data: Project & { key: string }) => void;
   addTask: (
+    data: {
+      projectKey: string;
+      priorityKey: PriorityTable;
+      taskKey: string;
+    } & TaskItem
+  ) => void;
+  updateTask: (
     data: {
       projectKey: string;
       priorityKey: PriorityTable;
