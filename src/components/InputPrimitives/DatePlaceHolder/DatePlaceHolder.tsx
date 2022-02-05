@@ -28,7 +28,7 @@ export function DatePlaceHolder({
   ...rest
 }: IDatePlaceHolderProps & React.ComponentProps<typeof TouchableOpacity>) {
   const { colors } = useTheme();
-  const formatted = format(value, "MM/dd/yyyy");
+  const formatted = format(new Date(value), "MM/dd/yyyy");
   return (
     <>
       {/*
