@@ -3,6 +3,8 @@ import styled from "@emotion/native";
 import { TouchableOpacity } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { RootStackScreenProps } from "../../../types";
+import { useTheme } from "../../../store";
+import { ToggleTheme } from "../../../selectors";
 export interface IHeaderProps {
   navigation: RootStackScreenProps<"Home">["navigation"];
 }
@@ -33,11 +35,12 @@ const IconContainer = styled.View({
 const IconButton = styled(TouchableOpacity)({});
 
 export function Header({ navigation }: IHeaderProps) {
+  const toggleTheme = useTheme(ToggleTheme);
   return (
     <Root>
       <Title>My Dashboard</Title>
       <IconContainer>
-        <IconButton>
+        <IconButton onPress={() => toggleTheme()}>
           <Icon name="moon" size={20} />
         </IconButton>
         <IconButton onPress={() => navigation.navigate("aboutModal")}>

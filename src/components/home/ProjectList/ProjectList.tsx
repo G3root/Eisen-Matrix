@@ -2,12 +2,13 @@ import * as React from "react";
 import { useStore } from "../../../store";
 import { Store } from "../../../selectors";
 import { ProjectCard } from "../ProjectCard/ProjectCard";
-import { FlatList, ListRenderItem } from "react-native";
+import { FlatList, ListRenderItem, View } from "react-native";
 import { Project, RootStackScreenProps } from "../../../types";
 import shallow from "zustand/shallow";
 
 import styled from "@emotion/native";
 import { EmptyList } from "../../common";
+import { Button } from "react-native-paper";
 
 const Spacer = styled.View({
   marginBottom: 10,
@@ -18,32 +19,39 @@ export interface IProjectListProps {
 }
 
 export function ProjectList({ navigation }: IProjectListProps) {
-  const store = useStore(Store);
-  const keys = useStore((state) => Object.keys(state.data), shallow);
+  const { keys, store } = useStore(
+    (state) => ({ keys: Object.keys(state.data), store: state.data }),
+    shallow
+  );
+
   const refinedData = keys.map((key) => ({
-    id: key,
+    projectKey: key,
     ...store[key],
   }));
 
-  const renderItem: ListRenderItem<Project & { id: string }> = ({ item }) => (
-    <ProjectCard navigation={navigation} title={item.title} objKey={item.id} />
+  const renderItem: ListRenderItem<Project & { projectKey: string }> = ({
+    item,
+  }) => (
+    <ProjectCard
+      navigation={navigation}
+      title={item.title}
+      objKey={item.projectKey}
+    />
   );
 
   return (
-    <>
-      <FlatList
-        data={refinedData}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        ItemSeparatorComponent={Spacer}
-        ListEmptyComponent={
-          <EmptyList
-            title="No Projects Yet"
-            tagLine="Be sure to add your first Project!"
-          />
-        }
-        contentContainerStyle={{ paddingTop: 50, paddingBottom: 120 }}
-      />
-    </>
+    <FlatList
+      data={refinedData}
+      renderItem={renderItem}
+      keyExtractor={(item) => item.projectKey}
+      ItemSeparatorComponent={Spacer}
+      ListEmptyComponent={
+        <EmptyList
+          title="No Projects Yet"
+          tagLine="Be sure to add your first Project!"
+        />
+      }
+      contentContainerStyle={{ paddingTop: 50, paddingBottom: 120 }}
+    />
   );
 }

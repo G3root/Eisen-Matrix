@@ -1,5 +1,5 @@
 import create from "zustand";
-import { EinsenMatrixState } from "./types";
+import { EinsenMatrixState, Theme } from "./types";
 import { persist, StateStorage } from "zustand/middleware";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -14,6 +14,23 @@ const storage: StateStorage = {
     await AsyncStorage.removeItem(name);
   },
 };
+
+export const useTheme = create<Theme>(
+  persist(
+    (set, get) => ({
+      isDark: false,
+      toggleTheme: () => {
+        const current = get().isDark;
+        return set({ isDark: !current });
+      },
+    }),
+
+    {
+      name: "theme",
+      getStorage: () => storage,
+    }
+  )
+);
 
 export const useStore = create<EinsenMatrixState>(
   persist(

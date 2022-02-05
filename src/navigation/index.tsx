@@ -18,15 +18,12 @@ import {
   TaskEditModal,
 } from "../screens";
 import { RootStackParamList } from "../types";
-import {
-  NavigationContainer,
-  DefaultTheme,
-  DarkTheme,
-} from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
+import { DarkTheme, DefaultTheme } from "../theme";
 
-export default function Navigation() {
+export default function Navigation({ isDark }: { isDark: boolean }) {
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={isDark ? DarkTheme : DefaultTheme}>
       <RootNavigator />
     </NavigationContainer>
   );

@@ -14,11 +14,10 @@ export function ProjectCard(props: IProjectCardProps) {
   const { title, objKey, navigation } = props;
   const deleteProject = useStore(DeleteProject);
 
-  const deleteHandler = (key: string) => deleteProject({ key });
-
   return (
     <Card
       onPress={() => navigation.push("projectDetail", { key: objKey, title })}
+      mode="outlined"
     >
       <Card.Title title={title} subtitle="Card Subtitle" left={LeftContent} />
       <Card.Actions>
@@ -29,7 +28,7 @@ export function ProjectCard(props: IProjectCardProps) {
         >
           Edit
         </Button>
-        <Button onPress={() => deleteHandler(objKey)}>Delete</Button>
+        <Button onPress={() => deleteProject({ key: objKey })}>Delete</Button>
       </Card.Actions>
     </Card>
   );

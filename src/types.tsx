@@ -104,3 +104,8 @@ export interface EinsenMatrixState {
     taskKey: string;
   }) => void;
 }
+
+export interface Theme {
+  isDark: boolean;
+  toggleTheme: () => void;
+}
