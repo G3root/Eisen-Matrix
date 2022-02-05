@@ -27,6 +27,7 @@
     "react-dom": "17.0.1",
     "react-hook-form": "^7.25.3",
     "react-native": "0.64.3",
+    "react-native-bouncy-checkbox": "^2.1.10",
     "react-native-get-random-values": "^1.7.2",
     "react-native-paper": "^4.11.2",
     "react-native-safe-area-context": "3.3.2",
