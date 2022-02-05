@@ -1,6 +1,5 @@
 import * as React from "react";
 import { TaskCard } from "../TaskCard/TaskCard";
-import { Store, ToggleComplete } from "../../../selectors";
 import { useStore } from "../../../store";
 import shallow from "zustand/shallow";
 import styled from "@emotion/native";
@@ -20,7 +19,6 @@ const Spacer = styled.View({
 
 export function TaskList(props: ITaskListProps) {
   const { matrixKey, projectKey, navigation } = props;
-  const toggleComplete = useStore(ToggleComplete);
   const data = useStore(
     (state) => state.data[projectKey].tasks[matrixKey],
     shallow
