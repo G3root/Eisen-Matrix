@@ -32,11 +32,12 @@ export function TaskCard({
 }: ITaskCardProps) {
   const { colors } = useTheme();
 
-  const { title, category, isCompleted } = useStore(
+  const { title, category, isCompleted, emoji } = useStore(
     (state) => ({
       title: state.data[projectKey].tasks[matrixKey][taskKey].title,
       category: state.data[projectKey].tasks[matrixKey][taskKey].category,
       isCompleted: state.data[projectKey].tasks[matrixKey][taskKey].isCompleted,
+      emoji: state.data[projectKey].tasks[matrixKey][taskKey].emoji,
     }),
     shallow
   );
@@ -46,7 +47,7 @@ export function TaskCard({
     <Avatar.Text
       color="white"
       style={{ backgroundColor: colors.background }}
-      label="🙂"
+      label={emoji}
       size={50}
       labelStyle={{ fontSize: 20 }}
     />

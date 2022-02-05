@@ -38,6 +38,7 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
 
 export interface TaskItem {
   title: string;
+  emoji: string;
   description: string;
   category: string;
   urgency: number;
@@ -50,6 +51,7 @@ export interface TaskItem {
 
 export interface Project {
   title: string;
+  emoji: string;
   description: string;
   isCompleted: boolean;
   dueDate: Date;

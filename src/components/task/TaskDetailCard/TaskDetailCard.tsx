@@ -57,7 +57,7 @@ export function TaskDetailCard({
   taskKey,
 }: ITaskDetailCardProps) {
   const { colors } = useTheme();
-  const { title, category, description, importance, urgency } = useStore(
+  const { title, category, description, importance, urgency, emoji } = useStore(
     (state) => state.data[projectKey].tasks[matrixKey][taskKey],
     shallow
   );
@@ -70,7 +70,7 @@ export function TaskDetailCard({
             <Avatar.Text
               color="white"
               style={{ backgroundColor: colors.background }}
-              label="🙂"
+              label={emoji}
               size={90}
               labelStyle={{ fontSize: 40 }}
             />

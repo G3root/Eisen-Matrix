@@ -6,11 +6,15 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import { Slider } from "@miblanchard/react-native-slider";
 import styled from "@emotion/native";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { DatePlaceHolder, Input } from "../../../components/InputPrimitives";
+import {
+  DatePlaceHolder,
+  Input,
+  EmojiPlaceholder,
+} from "../../../components/InputPrimitives";
 import { useStore } from "../../../store";
 import shallow from "zustand/shallow";
 import { nanoid } from "../../../utils";
-
+import EmojiPicker from "rn-emoji-keyboard";
 export interface ITaskFormProps {
   projectKey: string;
   priorityKey?: 1 | 2 | 3 | 4;
@@ -39,6 +43,7 @@ const RenderTrackMarkComponent = styled.View({
 
 type Inputs = {
   title: string;
+  emoji: string;
   description: string;
   category: string;
   urgency: number;
@@ -67,6 +72,7 @@ export function TaskForm({
       dueDate: new Date(),
       urgency: 0,
       importance: 0,
+      emoji: "",
     },
   });
 
@@ -79,6 +85,7 @@ export function TaskForm({
   );
 
   const [open, setOpen] = React.useState(false);
+  const [isEmojiOpen, setIsEmojiOpen] = React.useState(false);
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     if (priorityKey && taskKey) {
@@ -112,11 +119,13 @@ export function TaskForm({
   const dueDate = watch("dueDate");
   const urgency = watch("urgency");
   const importance = watch("importance");
+  const emoji = watch("emoji");
 
   React.useEffect(() => {
     register("dueDate");
     register("urgency");
     register("importance");
+    register("emoji");
   }, [register]);
 
   React.useEffect(() => {
@@ -128,6 +137,7 @@ export function TaskForm({
       setValue("category", data.category);
       setValue("urgency", data.urgency);
       setValue("importance", data.importance);
+      setValue("emoji", data.emoji);
       setValue("dueDate", new Date(data.dueDate));
     }
   }, []);
@@ -135,6 +145,14 @@ export function TaskForm({
   return (
     <ScrollView contentContainerStyle={{ paddingBottom: 30 }}>
       <Container>
+        <EmojiPlaceholder onPress={() => setIsEmojiOpen(true)} label={emoji} />
+        <EmojiPicker
+          onEmojiSelected={(emojiData) => setValue("emoji", emojiData.emoji)}
+          open={isEmojiOpen}
+          onClose={() => setIsEmojiOpen(false)}
+        />
+
+        <Spacer />
         <Input
           control={control}
           rules={{

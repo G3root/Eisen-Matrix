@@ -5,11 +5,15 @@ import { RootStackScreenProps } from "../../../types";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import styled from "@emotion/native";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { DatePlaceHolder, Input } from "../../InputPrimitives";
+import {
+  DatePlaceHolder,
+  EmojiPlaceholder,
+  Input,
+} from "../../InputPrimitives";
 import { useStore } from "../../../store";
 import shallow from "zustand/shallow";
 import { nanoid } from "../../../utils";
-
+import EmojiPicker from "rn-emoji-keyboard";
 export interface IProjectFormProps {
   projectKey?: string;
   navigation: RootStackScreenProps<
@@ -32,6 +36,7 @@ type Inputs = {
   description: string;
   isCompleted: boolean;
   dueDate: Date;
+  emoji: string;
 };
 
 export function ProjectForm({ projectKey, navigation }: IProjectFormProps) {
@@ -48,6 +53,7 @@ export function ProjectForm({ projectKey, navigation }: IProjectFormProps) {
       description: "",
       isCompleted: false,
       dueDate: new Date(),
+      emoji: "",
     },
   });
 
@@ -59,6 +65,7 @@ export function ProjectForm({ projectKey, navigation }: IProjectFormProps) {
     shallow
   );
   const [open, setOpen] = React.useState(false);
+  const [isEmojiOpen, setIsEmojiOpen] = React.useState(false);
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     if (projectKey) {
@@ -85,10 +92,12 @@ export function ProjectForm({ projectKey, navigation }: IProjectFormProps) {
 
   const isCompleted = watch("isCompleted");
   const dueDate = watch("dueDate");
+  const emoji = watch("emoji");
 
   React.useEffect(() => {
     register("isCompleted");
     register("dueDate");
+    register("emoji");
   }, []);
 
   React.useEffect(() => {
@@ -97,6 +106,7 @@ export function ProjectForm({ projectKey, navigation }: IProjectFormProps) {
       setValue("title", data.title);
       setValue("description", data.description);
       setValue("isCompleted", data.isCompleted);
+      setValue("emoji", data.emoji);
       setValue("dueDate", new Date(data.dueDate));
     }
   }, []);
@@ -104,6 +114,13 @@ export function ProjectForm({ projectKey, navigation }: IProjectFormProps) {
   return (
     <ScrollView contentContainerStyle={{ paddingBottom: 30 }}>
       <Container>
+        <EmojiPlaceholder onPress={() => setIsEmojiOpen(true)} label={emoji} />
+        <EmojiPicker
+          onEmojiSelected={(emojiData) => setValue("emoji", emojiData.emoji)}
+          open={isEmojiOpen}
+          onClose={() => setIsEmojiOpen(false)}
+        />
+        <Spacer mb={30} />
         <Input
           control={control}
           rules={{
