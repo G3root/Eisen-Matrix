@@ -88,7 +88,14 @@ export function TaskDetailFooter({
           <IconButton
             size={20}
             icon="edit-2"
-            onPress={() => console.log("Pressed")}
+            onPress={() =>
+              navigation.push("taskEditModal", {
+                projectKey,
+                taskKey,
+                matrixKey,
+                title,
+              })
+            }
             accessibilityLabel="Edit task"
           />
 
