@@ -13,6 +13,7 @@ import {
   ProjectDetailScreen,
   TaskCreateModal,
   TaskListScreen,
+  TaskDetailScreen,
 } from "../screens";
 import { RootStackParamList } from "../types";
 import {
@@ -50,6 +51,11 @@ function RootNavigator() {
           name="projectDetail"
           component={ProjectDetailScreen}
           options={({ route }) => ({ title: `${route.params.title} tasks` })}
+        />
+        <Stack.Screen
+          name="taskDetail"
+          component={TaskDetailScreen}
+          options={({ route }) => ({ title: route.params.title })}
         />
         <Stack.Screen
           name="taskList"

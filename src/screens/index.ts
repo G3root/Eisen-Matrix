@@ -4,3 +4,4 @@ export * from "./ProjectCreateModal";
 export * from "./ProjectDetailScreen";
 export * from "./TaskCreateModal";
 export * from "./TasksListScreen";
+export * from "./TaskDetailScreen";
