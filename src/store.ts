@@ -26,6 +26,16 @@ export const useStore = create<EinsenMatrixState>(
             [key]: { ...rest },
           },
         }),
+      updateProject: ({ key, ...rest }) => {
+        const data = get().data;
+        const entries = {
+          ...data,
+          [key]: { ...data[key], ...rest },
+        };
+        return set({
+          data: entries,
+        });
+      },
       deleteProject: ({ key }) => {
         const entries = get().data;
         delete entries[key];
@@ -43,6 +53,28 @@ export const useStore = create<EinsenMatrixState>(
               [priorityKey]: {
                 ...data[projectKey].tasks[priorityKey],
                 [taskKey]: { ...rest },
+              },
+            },
+          },
+        };
+        return set({
+          data: entries,
+        });
+      },
+      updateTask: ({ projectKey, priorityKey, taskKey, ...rest }) => {
+        const data = get().data;
+        const entries = {
+          ...data,
+          [projectKey]: {
+            ...data[projectKey],
+            tasks: {
+              ...data[projectKey].tasks,
+              [priorityKey]: {
+                ...data[projectKey].tasks[priorityKey],
+                [taskKey]: {
+                  ...data[projectKey].tasks[priorityKey][taskKey],
+                  ...rest,
+                },
               },
             },
           },
