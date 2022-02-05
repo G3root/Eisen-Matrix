@@ -51,6 +51,17 @@ export const useStore = create<EinsenMatrixState>(
           data: entries,
         });
       },
+      toggleComplete: ({ projectKey, priorityKey, taskKey }) => {
+        const data = get().data;
+        const currentState =
+          data[projectKey].tasks[priorityKey][taskKey].isCompleted;
+        const clone = { ...data };
+        clone[projectKey].tasks[priorityKey][taskKey].isCompleted =
+          !currentState;
+        return set({
+          data: clone,
+        });
+      },
     }),
     {
       name: "einsen-state",

@@ -70,4 +70,9 @@ export interface EinsenMatrixState {
       taskKey: string;
     } & TaskItem
   ) => void;
+  toggleComplete: (data: {
+    projectKey: string;
+    priorityKey: PriorityTable;
+    taskKey: string;
+  }) => void;
 }
