@@ -17,6 +17,12 @@ export type RootStackParamList = {
   taskModal: { key: string };
   projectDetail: { key: string; title: string };
   taskList: { projectKey: string; matrixKey: 1 | 2 | 3 | 4 };
+  taskDetail: {
+    title: string;
+    projectKey: string;
+    matrixKey: 1 | 2 | 3 | 4;
+    taskKey: string;
+  };
   NotFound: undefined;
 };
 
@@ -70,6 +76,11 @@ export interface EinsenMatrixState {
       taskKey: string;
     } & TaskItem
   ) => void;
+  deleteTask: (data: {
+    projectKey: string;
+    priorityKey: PriorityTable;
+    taskKey: string;
+  }) => void;
   toggleComplete: (data: {
     projectKey: string;
     priorityKey: PriorityTable;

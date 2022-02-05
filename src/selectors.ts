@@ -6,3 +6,4 @@ export const DeleteProject = (state: EinsenMatrixState) => state.deleteProject;
 export const AddTask = (state: EinsenMatrixState) => state.addTask;
 export const ToggleComplete = (state: EinsenMatrixState) =>
   state.toggleComplete;
+export const DeleteTask = (state: EinsenMatrixState) => state.deleteTask;

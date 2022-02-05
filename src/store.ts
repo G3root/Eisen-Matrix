@@ -62,7 +62,16 @@ export const useStore = create<EinsenMatrixState>(
           data: clone,
         });
       },
+      deleteTask: ({ projectKey, priorityKey, taskKey }) => {
+        const data = get().data;
+        const clone = { ...data };
+        delete clone[projectKey].tasks[priorityKey][taskKey];
+        return set({
+          data: clone,
+        });
+      },
     }),
+
     {
       name: "einsen-state",
       getStorage: () => storage,
