@@ -31,13 +31,7 @@ export function ProjectList({ navigation }: IProjectListProps) {
 
   const renderItem: ListRenderItem<Project & { projectKey: string }> = ({
     item,
-  }) => (
-    <ProjectCard
-      navigation={navigation}
-      title={item.title}
-      objKey={item.projectKey}
-    />
-  );
+  }) => <ProjectCard navigation={navigation} projectKey={item.projectKey} />;
 
   return (
     <FlatList
