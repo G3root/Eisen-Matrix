@@ -79,6 +79,7 @@ export interface EinsenMatrixState {
   createProject: (data: Project & { key: string }) => void;
   deleteProject: (data: { key: string }) => void;
   updateProject: (data: Project & { key: string }) => void;
+  toggleCompleteProject: (data: { projectKey: string }) => void;
   addTask: (
     data: {
       projectKey: string;
