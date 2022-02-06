@@ -5,7 +5,7 @@ import { View } from "react-native";
 import styled from "@emotion/native";
 import { useStore } from "../../../store";
 import shallow from "zustand/shallow";
-import { ToggleComplete } from "../../../selectors";
+import { ToggleTaskComplete } from "../../../selectors";
 import { RootStackScreenProps } from "../../../types";
 
 export interface ITaskCardProps {
@@ -42,7 +42,7 @@ export function TaskCard({
     shallow
   );
 
-  const toggleComplete = useStore(ToggleComplete);
+  const toggleComplete = useStore(ToggleTaskComplete);
   const LeftContent = () => (
     <Avatar.Text
       color="white"

@@ -13,7 +13,7 @@ import styled from "@emotion/native";
 import { Text, Dimensions, View, Share } from "react-native";
 import { useStore } from "../../../store";
 import shallow from "zustand/shallow";
-import { ToggleComplete } from "../../../selectors";
+import { ToggleTaskComplete } from "../../../selectors";
 import { RootStackScreenProps } from "../../../types";
 import { format } from "date-fns";
 
@@ -71,7 +71,7 @@ export function TaskDetailFooter({
   } = useStore(
     (state) => ({
       isCompleted: state.data[projectKey].tasks[matrixKey][taskKey].isCompleted,
-      toggleComplete: state.toggleComplete,
+      toggleComplete: state.toggleTaskComplete,
       deleteTask: state.deleteTask,
       title: state.data[projectKey].tasks[matrixKey][taskKey].title,
       description: state.data[projectKey].tasks[matrixKey][taskKey].description,

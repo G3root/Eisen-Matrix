@@ -109,7 +109,7 @@ export const useStore = create<EinsenMatrixState>(
           data: entries,
         });
       },
-      toggleComplete: ({ projectKey, priorityKey, taskKey }) => {
+      toggleTaskComplete: ({ projectKey, priorityKey, taskKey }) => {
         const data = get().data;
         const currentState =
           data[projectKey].tasks[priorityKey][taskKey].isCompleted;
