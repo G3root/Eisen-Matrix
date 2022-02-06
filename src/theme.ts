@@ -71,7 +71,6 @@ export const DefaultTheme = {
   colors: {
     ...PaperDefaultTheme.colors,
     ...NavigationDefaultTheme.colors,
-    primary: "#3498db",
     accent: "#212121",
   },
   fonts: configureFonts(fontConfig),

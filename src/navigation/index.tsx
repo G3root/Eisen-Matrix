@@ -20,6 +20,7 @@ import {
 import { RootStackParamList } from "../types";
 import { NavigationContainer } from "@react-navigation/native";
 import { DarkTheme, DefaultTheme } from "../theme";
+import { Navbar } from "../components/common";
 
 export default function Navigation({ isDark }: { isDark: boolean }) {
   return (
@@ -37,12 +38,15 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
   return (
-    <Stack.Navigator initialRouteName="Home">
+    <Stack.Navigator
+      screenOptions={{
+        header: (props) => <Navbar {...props} />,
+      }}
+      initialRouteName="Home"
+    >
       <Stack.Group>
         <Stack.Screen
-          options={{
-            headerShown: false,
-          }}
+          options={{ title: "My Dashboard" }}
           name="Home"
           component={HomeScreen}
         />

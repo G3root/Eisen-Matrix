@@ -1,11 +1,10 @@
 import styled from "@emotion/native";
-import { Header, ProjectList } from "../components/home";
+import { ProjectList } from "../components/home";
 import { FabButton } from "../components/home";
 
 import { RootStackScreenProps } from "../types";
 const Container = styled.View({
   marginHorizontal: 20,
-  marginTop: 60,
 });
 
 export function HomeScreen({
@@ -15,7 +14,6 @@ export function HomeScreen({
   return (
     <>
       <Container>
-        <Header navigation={navigation} />
         <ProjectList navigation={navigation} />
       </Container>
       <FabButton
