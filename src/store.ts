@@ -2,6 +2,7 @@ import create from "zustand";
 import { EinsenMatrixState, Theme } from "./types";
 import { persist, StateStorage } from "zustand/middleware";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import produce from "immer";
 
 const storage: StateStorage = {
   getItem: async (name: string): Promise<string | null> => {
@@ -19,10 +20,12 @@ export const useTheme = create<Theme>(
   persist(
     (set, get) => ({
       isDark: false,
-      toggleTheme: () => {
-        const current = get().isDark;
-        return set({ isDark: !current });
-      },
+      toggleTheme: () =>
+        set(
+          produce((state: Theme) => {
+            state.isDark = !state.isDark;
+          })
+        ),
     }),
 
     {
@@ -37,99 +40,59 @@ export const useStore = create<EinsenMatrixState>(
     (set, get) => ({
       data: {},
       createProject: ({ key, ...rest }) =>
-        set({
-          data: {
-            ...get().data,
-            [key]: { ...rest },
-          },
-        }),
-      updateProject: ({ key, ...rest }) => {
-        const data = get().data;
-        const entries = {
-          ...data,
-          [key]: { ...data[key], ...rest },
-        };
-        return set({
-          data: entries,
-        });
-      },
-      deleteProject: ({ key }) => {
-        const entries = get().data;
-        delete entries[key];
-
-        return set({ data: entries });
-      },
-      toggleCompleteProject: ({ projectKey }) => {
-        const data = get().data;
-        const currentState = get().data[projectKey].isCompleted;
-        const clone = { ...data };
-        clone[projectKey].isCompleted = !currentState;
-        return set({
-          data: clone,
-        });
-      },
-      addTask: ({ projectKey, priorityKey, taskKey, ...rest }) => {
-        const data = get().data;
-        const entries = {
-          ...data,
-          [projectKey]: {
-            ...data[projectKey],
-            tasks: {
-              ...data[projectKey].tasks,
-              [priorityKey]: {
-                ...data[projectKey].tasks[priorityKey],
-                [taskKey]: { ...rest },
-              },
-            },
-          },
-        };
-        return set({
-          data: entries,
-        });
-      },
-      updateTask: ({ projectKey, priorityKey, taskKey, ...rest }) => {
-        const data = get().data;
-        const entries = {
-          ...data,
-          [projectKey]: {
-            ...data[projectKey],
-            tasks: {
-              ...data[projectKey].tasks,
-              [priorityKey]: {
-                ...data[projectKey].tasks[priorityKey],
-                [taskKey]: {
-                  ...data[projectKey].tasks[priorityKey][taskKey],
-                  ...rest,
-                },
-              },
-            },
-          },
-        };
-        return set({
-          data: entries,
-        });
-      },
-      toggleTaskComplete: ({ projectKey, priorityKey, taskKey }) => {
-        const data = get().data;
-        const currentState =
-          data[projectKey].tasks[priorityKey][taskKey].isCompleted;
-        const clone = { ...data };
-        clone[projectKey].tasks[priorityKey][taskKey].isCompleted =
-          !currentState;
-        return set({
-          data: clone,
-        });
-      },
-      deleteTask: ({ projectKey, priorityKey, taskKey }) => {
-        const data = get().data;
-        const clone = { ...data };
-        delete clone[projectKey].tasks[priorityKey][taskKey];
-        return set({
-          data: clone,
-        });
-      },
+        set(
+          produce((state: EinsenMatrixState) => {
+            state.data[key] = { ...rest };
+          })
+        ),
+      updateProject: ({ key, ...rest }) =>
+        set(
+          produce((state: EinsenMatrixState) => {
+            state.data[key] = { ...state.data[key], ...rest };
+          })
+        ),
+      deleteProject: ({ key }) =>
+        set(
+          produce((state: EinsenMatrixState) => {
+            delete state.data[key];
+          })
+        ),
+      toggleCompleteProject: ({ projectKey }) =>
+        set(
+          produce((state: EinsenMatrixState) => {
+            state.data[projectKey].isCompleted =
+              !state.data[projectKey].isCompleted;
+          })
+        ),
+      addTask: ({ projectKey, priorityKey, taskKey, ...rest }) =>
+        set(
+          produce((state: EinsenMatrixState) => {
+            state.data[projectKey].tasks[priorityKey][taskKey] = { ...rest };
+          })
+        ),
+      updateTask: ({ projectKey, priorityKey, taskKey, ...rest }) =>
+        set(
+          produce((state: EinsenMatrixState) => {
+            state.data[projectKey].tasks[priorityKey][taskKey] = {
+              ...state.data[projectKey].tasks[priorityKey][taskKey],
+              ...rest,
+            };
+          })
+        ),
+      toggleTaskComplete: ({ projectKey, priorityKey, taskKey }) =>
+        set(
+          produce((state: EinsenMatrixState) => {
+            state.data[projectKey].tasks[priorityKey][taskKey].isCompleted =
+              !state.data[projectKey].tasks[priorityKey][taskKey].isCompleted;
+          })
+        ),
+      deleteTask: ({ projectKey, priorityKey, taskKey }) =>
+        set(
+          produce((state: EinsenMatrixState) => {
+            delete state.data[projectKey].tasks[priorityKey][taskKey];
+          })
+        ),
     }),
-
     {
       name: "einsen-state",
       getStorage: () => storage,
