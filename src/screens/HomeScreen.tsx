@@ -1,6 +1,6 @@
 import styled from "@emotion/native";
-import { ProjectList } from "../components/home";
-import { FabButton } from "../components/home";
+import { ProjectList } from "../components/project";
+import { FabButton } from "../components/common";
 
 import { RootStackScreenProps } from "../types";
 const Container = styled.View({

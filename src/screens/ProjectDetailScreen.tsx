@@ -1,6 +1,6 @@
 import styled from "@emotion/native";
-import { FabButton } from "../components/home";
-import { MatrixList } from "../components/projectDetail";
+import { FabButton } from "../components/common";
+import { MatrixList } from "../components/project";
 
 import { RootStackScreenProps } from "../types";
 const Container = styled.View({

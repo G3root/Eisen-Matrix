@@ -1,7 +1,7 @@
 import styled from "@emotion/native";
 import { TaskList } from "../components/task/TaskList";
 import { RootStackScreenProps } from "../types";
-import { FabButton } from "../components/home";
+import { FabButton } from "../components/common";
 const Container = styled.View({
   marginHorizontal: 20,
   marginTop: 60,

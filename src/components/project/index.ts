@@ -1,3 +1,4 @@
-export * from "./FabButton";
+export * from "./MatrixList";
+export * from "./MatrixCard";
 export * from "./ProjectCard";
 export * from "./ProjectList";
