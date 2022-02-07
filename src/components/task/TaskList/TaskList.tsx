@@ -10,7 +10,6 @@ import { RootStackScreenProps } from "../../../types";
 export interface ITaskListProps {
   projectKey: string;
   matrixKey: 1 | 2 | 3 | 4;
-  navigation: RootStackScreenProps<"taskList">["navigation"];
 }
 
 const Spacer = styled.View({
@@ -18,7 +17,7 @@ const Spacer = styled.View({
 });
 
 export function TaskList(props: ITaskListProps) {
-  const { matrixKey, projectKey, navigation } = props;
+  const { matrixKey, projectKey } = props;
   const data = useStore(
     (state) => state.data[projectKey].tasks[matrixKey],
     shallow
@@ -33,12 +32,7 @@ export function TaskList(props: ITaskListProps) {
   }));
 
   const renderItem: ListRenderItem<TaskItem & { id: string }> = ({ item }) => (
-    <TaskCard
-      navigation={navigation}
-      taskKey={item.id}
-      projectKey={projectKey}
-      matrixKey={matrixKey}
-    />
+    <TaskCard taskKey={item.id} projectKey={projectKey} matrixKey={matrixKey} />
   );
 
   return (

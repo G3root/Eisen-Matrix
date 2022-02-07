@@ -1,24 +1,20 @@
 import * as React from "react";
 import { useStore } from "../../../store";
-import { Store } from "../../../selectors";
 import { ProjectCard } from "../ProjectCard/ProjectCard";
-import { FlatList, ListRenderItem, View } from "react-native";
-import { Project, RootStackScreenProps } from "../../../types";
+import { FlatList, ListRenderItem } from "react-native";
+import { Project } from "../../../types";
 import shallow from "zustand/shallow";
 
 import styled from "@emotion/native";
 import { EmptyList } from "../../common";
-import { Button } from "react-native-paper";
 
 const Spacer = styled.View({
   marginBottom: 10,
 });
 
-export interface IProjectListProps {
-  navigation: RootStackScreenProps<"Home">["navigation"];
-}
+export interface IProjectListProps {}
 
-export function ProjectList({ navigation }: IProjectListProps) {
+export function ProjectList(props: IProjectListProps) {
   const { keys, store } = useStore(
     (state) => ({ keys: Object.keys(state.data), store: state.data }),
     shallow
@@ -31,7 +27,7 @@ export function ProjectList({ navigation }: IProjectListProps) {
 
   const renderItem: ListRenderItem<Project & { projectKey: string }> = ({
     item,
-  }) => <ProjectCard navigation={navigation} projectKey={item.projectKey} />;
+  }) => <ProjectCard projectKey={item.projectKey} />;
 
   return (
     <FlatList

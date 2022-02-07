@@ -15,11 +15,7 @@ export function TaskListScreen({
   return (
     <>
       <Container>
-        <TaskList
-          navigation={navigation}
-          projectKey={projectKey}
-          matrixKey={matrixKey}
-        />
+        <TaskList projectKey={projectKey} matrixKey={matrixKey} />
       </Container>
       <FabButton
         icon="plus-square"
