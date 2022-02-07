@@ -10,9 +10,12 @@ import styled from "@emotion/native";
 import { useTheme } from "../../../store";
 import shallow from "zustand/shallow";
 
-const CustomTitle = styled(Title)(({ isHome }: { isHome: boolean }) => ({
-  fontSize: isHome ? 25 : 20,
-}));
+const CustomTitle = styled(Title)(
+  ({ isHome, bg }: { isHome: boolean; bg: string }) => ({
+    fontSize: isHome ? 25 : 20,
+    color: bg,
+  })
+);
 
 const IconContainer = styled.View({
   display: "flex",
@@ -37,7 +40,11 @@ export function Navbar({
     <Appbar.Header style={{ backgroundColor: colors.background }}>
       {back ? <Appbar.BackAction onPress={navigation.goBack} /> : null}
       <Appbar.Content
-        title={<CustomTitle isHome={isHome}>{options.title} </CustomTitle>}
+        title={
+          <CustomTitle bg={colors.text} isHome={isHome}>
+            {options.title}{" "}
+          </CustomTitle>
+        }
       />
       {!back ? (
         <IconContainer>

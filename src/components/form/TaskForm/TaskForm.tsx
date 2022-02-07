@@ -1,6 +1,6 @@
 import * as React from "react";
 import { ScrollView } from "react-native";
-import { Paragraph, Button } from "react-native-paper";
+import { Paragraph, Button, useTheme } from "react-native-paper";
 import { RootStackScreenProps } from "../../../types";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Slider } from "@miblanchard/react-native-slider";
@@ -34,12 +34,12 @@ const Spacer = styled.View((props: { mb?: number }) => ({
   marginBottom: props.mb ? props.mb : 10,
 }));
 
-const RenderTrackMarkComponent = styled.View({
-  borderColor: "black",
+const RenderTrackMarkComponent = styled.View(({ bg }: { bg: string }) => ({
+  borderColor: bg,
   left: -3 / 2,
   borderRadius: 9999,
   borderWidth: 3,
-});
+}));
 
 type Inputs = {
   title: string;
@@ -57,6 +57,7 @@ export function TaskForm({
   taskKey,
   navigation,
 }: ITaskFormProps) {
+  const { colors, dark } = useTheme();
   const {
     control,
     handleSubmit,
@@ -233,7 +234,11 @@ export function TaskForm({
           value={importance}
           trackMarks={[0, 1, 2, 3, 4]}
           renderTrackMarkComponent={() => {
-            return <RenderTrackMarkComponent />;
+            return (
+              <RenderTrackMarkComponent
+                bg={dark ? colors.background : colors.text}
+              />
+            );
           }}
         />
 
@@ -251,14 +256,22 @@ export function TaskForm({
           minimumValue={0}
           step={1}
           renderTrackMarkComponent={() => {
-            return <RenderTrackMarkComponent />;
+            return (
+              <RenderTrackMarkComponent
+                bg={dark ? colors.background : colors.text}
+              />
+            );
           }}
           value={urgency}
           trackMarks={[0, 1, 2, 3, 4]}
         />
 
         <Spacer mb={20} />
-        <Button color="black" mode="contained" onPress={handleSubmit(onSubmit)}>
+        <Button
+          color={colors.text}
+          mode="contained"
+          onPress={handleSubmit(onSubmit)}
+        >
           Save task
         </Button>
       </Container>

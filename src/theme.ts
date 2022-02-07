@@ -6,6 +6,7 @@ import {
   DarkTheme as PaperDarkTheme,
   DefaultTheme as PaperDefaultTheme,
   configureFonts,
+  Colors,
 } from "react-native-paper";
 
 const fontConfig = {
@@ -71,15 +72,19 @@ export const DefaultTheme = {
   colors: {
     ...PaperDefaultTheme.colors,
     ...NavigationDefaultTheme.colors,
-    accent: "#212121",
+    accent: "black",
   },
   fonts: configureFonts(fontConfig),
 };
+
 export const DarkTheme = {
   ...PaperDarkTheme,
   colors: {
     ...PaperDarkTheme.colors,
     ...NavigationDarkTheme.colors,
+    background: "#1c1c1f",
+    surface: "#1c1c1f",
+    accent: "#0954a5",
   },
   fonts: configureFonts(fontConfig),
 };

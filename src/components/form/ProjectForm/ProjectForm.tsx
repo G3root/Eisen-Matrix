@@ -1,6 +1,6 @@
 import * as React from "react";
 import { ScrollView } from "react-native";
-import { Checkbox, Button } from "react-native-paper";
+import { Checkbox, Button, useTheme } from "react-native-paper";
 import { RootStackScreenProps } from "../../../types";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import styled from "@emotion/native";
@@ -40,6 +40,7 @@ type Inputs = {
 };
 
 export function ProjectForm({ projectKey, navigation }: IProjectFormProps) {
+  const { colors } = useTheme();
   const {
     control,
     handleSubmit,
@@ -179,7 +180,11 @@ export function ProjectForm({ projectKey, navigation }: IProjectFormProps) {
           }}
         />
         <Spacer mb={30} />
-        <Button color="black" mode="contained" onPress={handleSubmit(onSubmit)}>
+        <Button
+          color={colors.text}
+          mode="contained"
+          onPress={handleSubmit(onSubmit)}
+        >
           Save project
         </Button>
       </Container>

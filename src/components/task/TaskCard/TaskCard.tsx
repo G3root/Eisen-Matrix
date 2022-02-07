@@ -64,9 +64,9 @@ export function TaskCard({
         disableBuiltInState
         isChecked={isCompleted}
         size={25}
-        fillColor={colors.onSurface}
-        unfillColor="#FFFFFF"
-        iconStyle={{ borderRadius: 10 }}
+        fillColor={colors.primary}
+        unfillColor={colors.background}
+        iconStyle={{ borderRadius: 10, borderColor: colors.text }}
         iconImageStyle={{ width: 13, height: 13 }}
         onPress={() =>
           toggleComplete({ priorityKey: matrixKey, taskKey, projectKey })
