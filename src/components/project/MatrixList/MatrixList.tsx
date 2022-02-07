@@ -5,16 +5,18 @@ import { FlatList, ListRenderItem } from "react-native";
 import styled from "@emotion/native";
 import { MatrixCard } from "../MatrixCard/MatrixCard";
 import { RootStackScreenProps } from "../../../types";
+import { useNavigation } from "@react-navigation/native";
 export interface IMatrixListProps {
   projectKey: string;
-  navigation: RootStackScreenProps<"projectDetail">["navigation"];
 }
 const Spacer = styled.View({
   marginBottom: 20,
 });
 
 export function MatrixList(props: IMatrixListProps) {
-  const { projectKey, navigation } = props;
+  const { projectKey } = props;
+  const navigation =
+    useNavigation<RootStackScreenProps<"projectDetail">["navigation"]>();
   const store = useStore(Store);
   const tasks = store[projectKey].tasks;
   const keys: Array<1 | 2 | 3 | 4> = [4, 3, 2, 1];

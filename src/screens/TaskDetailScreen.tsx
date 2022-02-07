@@ -24,7 +24,6 @@ export function TaskDetailScreen({
         projectKey={projectKey}
         matrixKey={matrixKey}
         taskKey={taskKey}
-        navigation={navigation}
       />
     </>
   );

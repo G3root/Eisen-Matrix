@@ -1,19 +1,10 @@
 import * as React from "react";
-import {
-  Avatar,
-  Button,
-  Card,
-  Title,
-  Paragraph,
-  Surface,
-  IconButton,
-  Colors,
-} from "react-native-paper";
+import { Button, Surface, IconButton, Colors } from "react-native-paper";
 import styled from "@emotion/native";
-import { Text, Dimensions, View, Share } from "react-native";
+import { Dimensions, View, Share } from "react-native";
 import { useStore } from "../../../store";
 import shallow from "zustand/shallow";
-import { ToggleTaskComplete } from "../../../selectors";
+import { useNavigation } from "@react-navigation/native";
 import { RootStackScreenProps } from "../../../types";
 import { format } from "date-fns";
 
@@ -43,7 +34,6 @@ export interface ITaskDetailFooterProps {
   projectKey: string;
   matrixKey: 1 | 2 | 3 | 4;
   taskKey: string;
-  navigation: RootStackScreenProps<"taskDetail">["navigation"];
 }
 
 const taskStatus = {
@@ -57,9 +47,10 @@ export function TaskDetailFooter({
   projectKey,
   matrixKey,
   taskKey,
-  navigation,
 }: ITaskDetailFooterProps) {
   const width = Dimensions.get("screen").width;
+  const navigation =
+    useNavigation<RootStackScreenProps<"taskDetail">["navigation"]>();
   const {
     isCompleted,
     toggleComplete,

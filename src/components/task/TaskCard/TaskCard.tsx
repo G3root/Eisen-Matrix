@@ -7,12 +7,12 @@ import { useStore } from "../../../store";
 import shallow from "zustand/shallow";
 import { ToggleTaskComplete } from "../../../selectors";
 import { RootStackScreenProps } from "../../../types";
+import { useNavigation } from "@react-navigation/native";
 
 export interface ITaskCardProps {
   projectKey: string;
   matrixKey: 1 | 2 | 3 | 4;
   taskKey: string;
-  navigation: RootStackScreenProps<"taskList">["navigation"];
 }
 
 const CustomTitle = styled(Title)(({ checked }: { checked?: boolean }) => ({
@@ -24,13 +24,10 @@ const CustomSubtitle = styled(Caption)(
   })
 );
 
-export function TaskCard({
-  projectKey,
-  matrixKey,
-  taskKey,
-  navigation,
-}: ITaskCardProps) {
+export function TaskCard({ projectKey, matrixKey, taskKey }: ITaskCardProps) {
   const { colors } = useTheme();
+  const navigation =
+    useNavigation<RootStackScreenProps<"taskList">["navigation"]>();
 
   const { title, category, isCompleted, emoji } = useStore(
     (state) => ({

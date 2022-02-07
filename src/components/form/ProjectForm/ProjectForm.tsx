@@ -1,7 +1,6 @@
 import * as React from "react";
 import { ScrollView } from "react-native";
 import { Checkbox, Button, useTheme } from "react-native-paper";
-import { RootStackScreenProps } from "../../../types";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import styled from "@emotion/native";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -14,11 +13,9 @@ import { useStore } from "../../../store";
 import shallow from "zustand/shallow";
 import { nanoid } from "../../../utils";
 import EmojiPicker from "rn-emoji-keyboard";
+import { useNavigation } from "@react-navigation/native";
 export interface IProjectFormProps {
   projectKey?: string;
-  navigation: RootStackScreenProps<
-    "projectCreateModal" | "projectEditModal"
-  >["navigation"];
 }
 
 const Container = styled.View({
@@ -39,8 +36,9 @@ type Inputs = {
   emoji: string;
 };
 
-export function ProjectForm({ projectKey, navigation }: IProjectFormProps) {
+export function ProjectForm({ projectKey }: IProjectFormProps) {
   const { colors } = useTheme();
+  const navigation = useNavigation();
   const {
     control,
     handleSubmit,

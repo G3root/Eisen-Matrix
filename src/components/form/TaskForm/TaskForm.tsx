@@ -6,6 +6,7 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import { Slider } from "@miblanchard/react-native-slider";
 import styled from "@emotion/native";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useNavigation } from "@react-navigation/native";
 import {
   DatePlaceHolder,
   Input,
@@ -19,9 +20,6 @@ export interface ITaskFormProps {
   projectKey: string;
   priorityKey?: 1 | 2 | 3 | 4;
   taskKey?: string;
-  navigation: RootStackScreenProps<
-    "taskCreateModal" | "taskEditModal"
-  >["navigation"];
 }
 
 const Container = styled.View({
@@ -51,13 +49,9 @@ type Inputs = {
   dueDate: Date;
 };
 
-export function TaskForm({
-  projectKey,
-  priorityKey,
-  taskKey,
-  navigation,
-}: ITaskFormProps) {
+export function TaskForm({ projectKey, priorityKey, taskKey }: ITaskFormProps) {
   const { colors, dark } = useTheme();
+  const navigation = useNavigation();
   const {
     control,
     handleSubmit,

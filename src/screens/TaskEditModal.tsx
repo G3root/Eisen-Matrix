@@ -12,7 +12,6 @@ export function TaskEditModal({
       priorityKey={matrixKey}
       projectKey={projectKey}
       taskKey={taskKey}
-      navigation={navigation}
     />
   );
 }

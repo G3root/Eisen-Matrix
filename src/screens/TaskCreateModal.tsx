@@ -7,5 +7,5 @@ export function TaskCreateModal({
   navigation,
 }: RootStackScreenProps<"taskCreateModal">) {
   const { key } = route.params;
-  return <TaskForm projectKey={key} navigation={navigation} />;
+  return <TaskForm projectKey={key} />;
 }

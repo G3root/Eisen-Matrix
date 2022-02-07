@@ -15,7 +15,7 @@ export function ProjectDetailScreen({
   return (
     <>
       <Container>
-        <MatrixList navigation={navigation} projectKey={route.params.key} />
+        <MatrixList projectKey={route.params.key} />
       </Container>
       <FabButton
         icon="plus-square"

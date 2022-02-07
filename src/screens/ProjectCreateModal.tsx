@@ -10,5 +10,5 @@ export function ProjectCreateModal({
   route,
   navigation,
 }: RootStackScreenProps<"projectCreateModal">) {
-  return <ProjectForm navigation={navigation} />;
+  return <ProjectForm />;
 }

@@ -16,9 +16,9 @@ import styled from "@emotion/native";
 import { View } from "react-native";
 import { isPast, formatDistanceToNow } from "date-fns";
 import { Feather } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 export interface IProjectCardProps {
   projectKey: string;
-  navigation: RootStackScreenProps<"Home">["navigation"];
 }
 
 const CustomTitle = styled(Title)(({ checked }: { checked?: boolean }) => ({
@@ -36,7 +36,9 @@ const CustomChip = styled(Chip)({
 });
 
 export function ProjectCard(props: IProjectCardProps) {
-  const { projectKey, navigation } = props;
+  const { projectKey } = props;
+  const navigation =
+    useNavigation<RootStackScreenProps<"Home">["navigation"]>();
   const { colors } = useTheme();
   const {
     deleteProject,
