@@ -14,7 +14,7 @@ import { RootStackScreenProps } from "../../../types";
 import shallow from "zustand/shallow";
 import styled from "@emotion/native";
 import { View } from "react-native";
-import { isPast, formatDistanceToNow } from "date-fns";
+import { formatDistanceToNow, isToday as Today } from "date-fns";
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 export interface IProjectCardProps {
@@ -64,7 +64,7 @@ export function ProjectCard(props: IProjectCardProps) {
     addSuffix: true,
   });
 
-  const isToday = isPast(new Date(dueDate));
+  const isToday = Today(new Date(dueDate));
 
   let taskCount = 0;
   const taskKeys: Array<1 | 2 | 3 | 4> = [1, 2, 3, 4];
