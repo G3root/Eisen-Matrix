@@ -1,7 +1,12 @@
 import * as React from "react";
-import { Avatar, Card, Title, Caption, useTheme } from "react-native-paper";
-import BouncyCheckbox from "react-native-bouncy-checkbox";
-import { View } from "react-native";
+import {
+  Avatar,
+  Card,
+  Title,
+  Caption,
+  useTheme,
+  Checkbox,
+} from "react-native-paper";
 import styled from "@emotion/native";
 import { useStore } from "../../../store";
 import shallow from "zustand/shallow";
@@ -18,11 +23,27 @@ export interface ITaskCardProps {
 const CustomTitle = styled(Title)(({ checked }: { checked?: boolean }) => ({
   textDecorationLine: checked ? "line-through" : "none",
 }));
+
 const CustomSubtitle = styled(Caption)(
   ({ checked }: { checked?: boolean }) => ({
     textDecorationLine: checked ? "line-through" : "none",
   })
 );
+
+const Container = styled.View({
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+});
+
+const Wrapper = styled.View({
+  flex: 1,
+  marginLeft: 15,
+});
+
+const CardTitle = styled(Card.Title)({
+  minHeight: 90,
+});
 
 export function TaskCard({ projectKey, matrixKey, taskKey }: ITaskCardProps) {
   const { colors } = useTheme();
@@ -50,27 +71,16 @@ export function TaskCard({ projectKey, matrixKey, taskKey }: ITaskCardProps) {
     />
   );
   return (
-    <View
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-      }}
-    >
-      <BouncyCheckbox
-        disableBuiltInState
-        isChecked={isCompleted}
-        size={25}
-        fillColor={colors.primary}
-        unfillColor={colors.background}
-        iconStyle={{ borderRadius: 10, borderColor: colors.text }}
-        iconImageStyle={{ width: 13, height: 13 }}
+    <Container>
+      <Checkbox.Android
         onPress={() =>
           toggleComplete({ priorityKey: matrixKey, taskKey, projectKey })
         }
-        style={{ marginLeft: 5 }}
+        status={isCompleted ? "checked" : "unchecked"}
+        color={colors.text}
       />
-      <View style={{ flex: 1 }}>
+
+      <Wrapper>
         <Card
           mode="elevated"
           onPress={() =>
@@ -82,16 +92,15 @@ export function TaskCard({ projectKey, matrixKey, taskKey }: ITaskCardProps) {
             })
           }
         >
-          <Card.Title
+          <CardTitle
             title={<CustomTitle checked={isCompleted}>{title}</CustomTitle>}
             subtitle={
               <CustomSubtitle checked={isCompleted}>{category}</CustomSubtitle>
             }
             left={LeftContent}
-            style={{ minHeight: 90 }}
           />
         </Card>
-      </View>
-    </View>
+      </Wrapper>
+    </Container>
   );
 }
