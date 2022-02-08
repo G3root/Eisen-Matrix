@@ -34,5 +34,6 @@
     "web": {
       "favicon": "./assets/images/favicon.png"
     }
-  }
+  },
+  "plugins": ["./withDisableForcedDarkMode.js"]
 }
