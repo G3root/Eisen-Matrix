@@ -70,7 +70,7 @@ export interface Project {
   };
 }
 
-type PriorityTable = 1 | 2 | 3 | 4;
+export type PriorityTableKey = 1 | 2 | 3 | 4;
 
 export interface EinsenMatrixState {
   data: {
@@ -78,30 +78,30 @@ export interface EinsenMatrixState {
   };
   createProject: (data: Project & { key: string }) => void;
   deleteProject: (data: { key: string }) => void;
-  updateProject: (data: Project & { key: string }) => void;
+  updateProject: (data: Partial<Project> & { key: string }) => void;
   toggleCompleteProject: (data: { projectKey: string }) => void;
   addTask: (
     data: {
       projectKey: string;
-      priorityKey: PriorityTable;
+      priorityKey: PriorityTableKey;
       taskKey: string;
     } & TaskItem
   ) => void;
   updateTask: (
     data: {
       projectKey: string;
-      priorityKey: PriorityTable;
+      priorityKey: PriorityTableKey;
       taskKey: string;
-    } & TaskItem
+    } & Partial<TaskItem>
   ) => void;
   deleteTask: (data: {
     projectKey: string;
-    priorityKey: PriorityTable;
+    priorityKey: PriorityTableKey;
     taskKey: string;
   }) => void;
   toggleTaskComplete: (data: {
     projectKey: string;
-    priorityKey: PriorityTable;
+    priorityKey: PriorityTableKey;
     taskKey: string;
   }) => void;
 }
