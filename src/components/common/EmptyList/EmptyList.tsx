@@ -19,7 +19,7 @@ export interface IEmptyListProps {
 
 export function EmptyList({ title, tagLine }: IEmptyListProps) {
   const windowHeight = Dimensions.get("window").height;
-  const ContainerHeight = windowHeight * 0.7;
+  const ContainerHeight = windowHeight * 0.6;
   const height = windowHeight * 0.3;
   return (
     <Container height={ContainerHeight}>
