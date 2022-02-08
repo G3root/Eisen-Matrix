@@ -1,5 +1,5 @@
 import create from "zustand";
-import { EinsenMatrixState, Theme } from "./types";
+import { EinsenMatrixState, Theme } from "../types";
 import { persist, StateStorage } from "zustand/middleware";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import produce from "immer";
