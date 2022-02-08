@@ -3,9 +3,6 @@ import { ProjectList } from "../components/project";
 import { FabButton } from "../components/common";
 
 import { RootStackScreenProps } from "../types";
-const Container = styled.View({
-  marginHorizontal: 20,
-});
 
 export function HomeScreen({
   route,
@@ -13,9 +10,8 @@ export function HomeScreen({
 }: RootStackScreenProps<"Home">) {
   return (
     <>
-      <Container>
-        <ProjectList />
-      </Container>
+      <ProjectList />
+
       <FabButton
         icon="plus-square"
         label="add project"

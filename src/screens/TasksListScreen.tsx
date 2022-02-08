@@ -2,10 +2,6 @@ import styled from "@emotion/native";
 import { TaskList } from "../components/task/TaskList";
 import { RootStackScreenProps } from "../types";
 import { FabButton } from "../components/common";
-const Container = styled.View({
-  marginHorizontal: 20,
-  marginTop: 60,
-});
 
 export function TaskListScreen({
   route,
@@ -14,9 +10,8 @@ export function TaskListScreen({
   const { matrixKey, projectKey } = route.params;
   return (
     <>
-      <Container>
-        <TaskList projectKey={projectKey} matrixKey={matrixKey} />
-      </Container>
+      <TaskList projectKey={projectKey} matrixKey={matrixKey} />
+
       <FabButton
         icon="plus-square"
         label="add Task"
