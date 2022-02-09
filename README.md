@@ -14,6 +14,9 @@
 
  Eisen Matrix is a prioritization app that uses Eisenhower matrix technique as workflow to prioritize a list of tasks & built with React Native for learning purposes inspired by [Einsen](https://github.com/Spikeysanju/Einsen) which is written in **Kotlin**.<br />
 
+***Try latest Einsen Matrix app apk from below 👇***
+
+[![Einsen](https://img.shields.io/badge/-Download%20APK-blue?style=for-the-badge&logo=android)](https://github.com/G3root/Eisen-Matrix/releases/download/v1.2.0/Eisen-Matrix.apk)
 
 <br />
 
