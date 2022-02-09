@@ -2,8 +2,8 @@
 import { ExpoConfig, ConfigContext } from "@expo/config";
 
 export const APP_NAME = "Eisen Matrix";
-export const VERSION = "1.1.0";
-export const VERSION_CODE = 2;
+export const VERSION = "1.2.0";
+export const VERSION_CODE = 3;
 export const LICENSE = "MIT";
 export const PACKAGE_NAME = "com.g3root.EisenMatrix";
 export const REPO_Link = "https://github.com/G3root/Eisen-Matrix";
