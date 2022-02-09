@@ -5,8 +5,8 @@ export const APP_NAME = "Eisen Matrix";
 export const VERSION = "1.1.0";
 export const VERSION_CODE = 2;
 export const LICENSE = "MIT";
-export const PACKAGE_NAME = "com.g3root.einsenMatrix";
-export const REPO_Link = "https://github.com/G3root/Einsen-Matrix";
+export const PACKAGE_NAME = "com.g3root.EisenMatrix";
+export const REPO_Link = "https://github.com/G3root/Eisen-Matrix";
 export const LOGO_SOURCE = "https://rareblocks.xyz/logos-by-larkef";
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
