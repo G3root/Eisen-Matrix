@@ -7,7 +7,6 @@ import { EmptyList } from "../../common";
 import { FlatList, ListRenderItem } from "react-native";
 import { TaskItem } from "../../../types";
 import { Tabs, TabScreen } from "react-native-paper-tabs";
-import { useTheme } from "react-native-paper";
 export interface ITaskListProps {
   projectKey: string;
   matrixKey: 1 | 2 | 3 | 4;
@@ -21,11 +20,15 @@ const Container = styled.View({
   marginHorizontal: 20,
 });
 
+const Tab = styled(Tabs)(({ theme }) => ({
+  backgroundColor: theme.colors.background,
+  marginTop: 10,
+}));
+
 type TaskWithId = TaskItem & { id: string };
 
 export function TaskList(props: ITaskListProps) {
   const { matrixKey, projectKey } = props;
-  const { colors } = useTheme();
   const { data, keys } = useStore(
     (state) => ({
       data: state.data[projectKey].tasks[matrixKey],
@@ -59,10 +62,7 @@ export function TaskList(props: ITaskListProps) {
   );
 
   return (
-    <Tabs
-      style={{ backgroundColor: colors.background, marginTop: 10 }}
-      uppercase={false}
-    >
+    <Tab uppercase={false}>
       <TabScreen label="All" icon="view-list">
         <Container>
           <FlatList
@@ -114,6 +114,6 @@ export function TaskList(props: ITaskListProps) {
           />
         </Container>
       </TabScreen>
-    </Tabs>
+    </Tab>
   );
 }

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Card, Title, Paragraph, useTheme, Colors } from "react-native-paper";
+import { Card, Title, Paragraph, Colors } from "react-native-paper";
 import styled from "@emotion/native";
 import { View } from "react-native";
 
@@ -61,7 +61,6 @@ const data = {
 
 export function MatrixCard(props: IMatrixCardProps) {
   const { id, count, onPress } = props;
-  const { colors } = useTheme();
 
   return (
     <CardWrapper mode="outlined" bg={data[id].bg} onPress={onPress}>

@@ -5,7 +5,6 @@ import {
   Avatar,
   Card,
   Title,
-  useTheme,
   Chip,
   Subheading,
   Caption,
@@ -32,9 +31,10 @@ const CategoryWrapper = styled.View({
   marginBottom: 8,
 });
 
-const CustomParagraph = styled.Text({
+const CustomParagraph = styled.Text(({ theme }) => ({
   marginTop: 10,
-});
+  color: theme.colors.text,
+}));
 
 const MatrixWrapper = styled.View({
   display: "flex",
@@ -51,12 +51,15 @@ const MatrixRow = styled.View({
   justifyContent: "center",
 });
 
+const AvatarText = styled(Avatar.Text)(({ theme }) => ({
+  backgroundColor: theme.colors.background,
+}));
+
 export function TaskDetailCard({
   projectKey,
   matrixKey,
   taskKey,
 }: ITaskDetailCardProps) {
-  const { colors } = useTheme();
   const { title, category, description, importance, urgency, emoji } = useStore(
     (state) => state.data[projectKey].tasks[matrixKey][taskKey],
     shallow
@@ -67,9 +70,8 @@ export function TaskDetailCard({
       <Card>
         <Card.Content>
           <EmojiWrapper>
-            <Avatar.Text
+            <AvatarText
               color="white"
-              style={{ backgroundColor: colors.background }}
               label={emoji}
               size={90}
               labelStyle={{ fontSize: 40 }}

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { ScrollView } from "react-native";
 import { Paragraph, Button, useTheme } from "react-native-paper";
+import { RootStackScreenProps } from "../../../types";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Slider } from "@miblanchard/react-native-slider";
 import styled from "@emotion/native";
@@ -15,6 +16,7 @@ import { useStore } from "../../../store";
 import shallow from "zustand/shallow";
 import { nanoid } from "../../../utils";
 import EmojiPicker from "rn-emoji-keyboard";
+import type { Theme } from "@emotion/react";
 export interface ITaskFormProps {
   projectKey: string;
   priorityKey?: 1 | 2 | 3 | 4;
@@ -31,8 +33,10 @@ const Spacer = styled.View((props: { mb?: number }) => ({
   marginBottom: props.mb ? props.mb : 10,
 }));
 
-const RenderTrackMarkComponent = styled.View(({ bg }: { bg: string }) => ({
-  borderColor: bg,
+const RenderTrackMarkComponent = styled.View<{ dark: boolean }>((props) => ({
+  borderColor: props.dark
+    ? props.theme.colors.background
+    : props.theme.colors.text,
   left: -3 / 2,
   borderRadius: 9999,
   borderWidth: 3,
@@ -227,11 +231,7 @@ export function TaskForm({ projectKey, priorityKey, taskKey }: ITaskFormProps) {
           value={importance}
           trackMarks={[0, 1, 2, 3, 4]}
           renderTrackMarkComponent={() => {
-            return (
-              <RenderTrackMarkComponent
-                bg={dark ? colors.background : colors.text}
-              />
-            );
+            return <RenderTrackMarkComponent dark={dark} />;
           }}
         />
 
@@ -249,11 +249,7 @@ export function TaskForm({ projectKey, priorityKey, taskKey }: ITaskFormProps) {
           minimumValue={0}
           step={1}
           renderTrackMarkComponent={() => {
-            return (
-              <RenderTrackMarkComponent
-                bg={dark ? colors.background : colors.text}
-              />
-            );
+            return <RenderTrackMarkComponent dark={dark} />;
           }}
           value={urgency}
           trackMarks={[0, 1, 2, 3, 4]}

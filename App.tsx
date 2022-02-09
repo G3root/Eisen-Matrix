@@ -4,6 +4,8 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import useCachedResources from "./src/hooks/useCachedResources";
 import Navigation from "./src/navigation";
 
+import { ThemeProvider } from "@emotion/react";
+
 import { Provider as PaperProvider } from "react-native-paper";
 import { Feather } from "@expo/vector-icons";
 
@@ -27,11 +29,13 @@ export default function App() {
         }}
         theme={theme}
       >
-        <SafeAreaProvider>
-          <Navigation isDark={isThemeDark} />
+        <ThemeProvider theme={{ colors: theme.colors }}>
+          <SafeAreaProvider>
+            <Navigation isDark={isThemeDark} />
 
-          <StatusBar style={isThemeDark ? "light" : "dark"} />
-        </SafeAreaProvider>
+            <StatusBar style={isThemeDark ? "light" : "dark"} />
+          </SafeAreaProvider>
+        </ThemeProvider>
       </PaperProvider>
     );
   }

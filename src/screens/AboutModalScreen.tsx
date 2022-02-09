@@ -10,7 +10,7 @@ import {
 import { RootStackScreenProps } from "../types";
 import styled from "@emotion/native";
 import { SvgXml } from "react-native-svg";
-import { Title, useTheme } from "react-native-paper";
+import { Title } from "react-native-paper";
 
 const xml = `
 <svg width="80" height="80" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -48,13 +48,13 @@ const Spacer = styled.View({
   marginBottom: 10,
 });
 
-const Link = styled.Text(({ color }: { color: string }) => ({
+const Link = styled.Text(({ theme }) => ({
   textDecorationLine: "underline",
-  color,
+  color: theme.colors.primary,
 }));
 
-const CustomText = styled.Text(({ color }: { color: string }) => ({
-  color,
+const CustomText = styled.Text(({ theme }) => ({
+  color: theme.colors.text,
 }));
 
 const LogoContainer = styled.View({
@@ -76,19 +76,17 @@ export function AboutModalScreen({
   route,
   navigation,
 }: RootStackScreenProps<"aboutModal">) {
-  const { colors } = useTheme();
   return (
     <Container>
       <Logo />
       <Title>{APP_NAME}</Title>
-      <CustomText color={colors.text}>{VERSION}</CustomText>
+      <CustomText>{VERSION}</CustomText>
       <Spacer />
       <Title>Attribution & License</Title>
-      <CustomText color={colors.text}>Licensed under {LICENSE}</CustomText>
+      <CustomText>Licensed under {LICENSE}</CustomText>
       <Spacer />
       <Title>Logo Source</Title>
       <Link
-        color={colors.primary}
         onPress={() => {
           Linking.openURL(LOGO_SOURCE);
         }}
@@ -98,7 +96,6 @@ export function AboutModalScreen({
       <Spacer />
       <Title>Source Code</Title>
       <Link
-        color={colors.primary}
         onPress={() => {
           Linking.openURL(REPO_Link);
         }}

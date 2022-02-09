@@ -1,6 +1,6 @@
 import * as React from "react";
 import styled from "@emotion/native";
-import { useTheme, Avatar } from "react-native-paper";
+import { Avatar } from "react-native-paper";
 import { TouchableOpacity } from "react-native";
 
 export interface IEmojiPlaceholderProps {
@@ -13,18 +13,17 @@ const Container = styled(TouchableOpacity)({
   justifyContent: "center",
 });
 
+const AvatarText = styled(Avatar.Text)(({ theme }) => ({
+  backgroundColor: theme.colors.disabled,
+}));
+
 export function EmojiPlaceholder({
   label,
   ...rest
 }: IEmojiPlaceholderProps & React.ComponentProps<typeof TouchableOpacity>) {
-  const { colors } = useTheme();
   return (
     <Container {...rest}>
-      <Avatar.Text
-        style={{ backgroundColor: colors.disabled }}
-        size={90}
-        label={label}
-      />
+      <AvatarText size={90} label={label} />
     </Container>
   );
 }

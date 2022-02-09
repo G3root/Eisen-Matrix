@@ -2,6 +2,7 @@
  * Learn more about using TypeScript with React Navigation:
  * https://reactnavigation.org/docs/typescript/
  */
+import "@emotion/react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 declare global {
@@ -109,4 +110,24 @@ export interface EinsenMatrixState {
 export interface Theme {
   isDark: boolean;
   toggleTheme: () => void;
+}
+
+declare module "@emotion/react" {
+  export interface Theme {
+    colors: {
+      background: string;
+      surface: string;
+      accent: string;
+      primary: string;
+      card: string;
+      text: string;
+      border: string;
+      notification: string;
+      error: string;
+      onSurface: string;
+      disabled: string;
+      placeholder: string;
+      backdrop: string;
+    };
+  }
 }

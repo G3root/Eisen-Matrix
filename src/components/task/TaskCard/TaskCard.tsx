@@ -45,6 +45,10 @@ const CardTitle = styled(Card.Title)({
   minHeight: 90,
 });
 
+const AvatarText = styled(Avatar.Text)(({ theme }) => ({
+  backgroundColor: theme.colors.background,
+}));
+
 export function TaskCard({ projectKey, matrixKey, taskKey }: ITaskCardProps) {
   const { colors } = useTheme();
   const navigation =
@@ -62,9 +66,8 @@ export function TaskCard({ projectKey, matrixKey, taskKey }: ITaskCardProps) {
 
   const toggleComplete = useStore(ToggleTaskComplete);
   const LeftContent = () => (
-    <Avatar.Text
+    <AvatarText
       color="white"
-      style={{ backgroundColor: colors.background }}
       label={emoji}
       size={50}
       labelStyle={{ fontSize: 20 }}
