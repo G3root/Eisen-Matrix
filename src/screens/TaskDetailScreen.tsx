@@ -1,6 +1,7 @@
 import styled from "@emotion/native";
 import { TaskDetailCard, TaskDetailFooter } from "../components/task";
 import { RootStackScreenProps } from "../types";
+
 const Container = styled.View({
   marginHorizontal: 20,
   marginTop: 20,

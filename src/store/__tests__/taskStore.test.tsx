@@ -1,7 +1,7 @@
 import { Project, TaskItem, PriorityTableKey } from "../../types";
 import { render, fireEvent } from "@testing-library/react-native";
 import shallow from "zustand/shallow";
-import { View, Button, TouchableOpacity } from "react-native";
+import { View, Button } from "react-native";
 import { useStore } from "..";
 import { defaultProject, project1, defaultTask, task1 } from "./constants";
 

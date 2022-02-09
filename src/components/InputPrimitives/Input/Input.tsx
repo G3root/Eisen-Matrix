@@ -1,6 +1,5 @@
 import * as React from "react";
 import { HelperText, TextInput } from "react-native-paper";
-
 import { Controller, UseControllerProps, Control, Path } from "react-hook-form";
 
 type Form = Omit<UseControllerProps, "control" | "name">;
@@ -27,7 +26,7 @@ export function Input<Field>({
         name={name}
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
-            value={value}
+            value={value as any}
             onBlur={onBlur}
             onChangeText={onChange}
             {...inputProps}

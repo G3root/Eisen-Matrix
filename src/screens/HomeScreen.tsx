@@ -1,7 +1,5 @@
-import styled from "@emotion/native";
 import { ProjectList } from "../components/project";
 import { FabButton } from "../components/common";
-
 import { RootStackScreenProps } from "../types";
 
 export function HomeScreen({

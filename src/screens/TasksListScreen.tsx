@@ -1,4 +1,3 @@
-import styled from "@emotion/native";
 import { TaskList } from "../components/task/TaskList";
 import { RootStackScreenProps } from "../types";
 import { FabButton } from "../components/common";

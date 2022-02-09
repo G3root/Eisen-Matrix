@@ -1,7 +1,6 @@
 import * as React from "react";
 import { ScrollView } from "react-native";
 import { Paragraph, Button, useTheme } from "react-native-paper";
-import { RootStackScreenProps } from "../../../types";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { Slider } from "@miblanchard/react-native-slider";
 import styled from "@emotion/native";

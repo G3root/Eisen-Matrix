@@ -1,8 +1,7 @@
 import * as React from "react";
-import { format } from "date-fns";
 import styled from "@emotion/native";
-import { HelperText, Paragraph, useTheme, Avatar } from "react-native-paper";
-import { Text, TouchableOpacity } from "react-native";
+import { useTheme, Avatar } from "react-native-paper";
+import { TouchableOpacity } from "react-native";
 
 export interface IEmojiPlaceholderProps {
   label: string;
